@@ -44,6 +44,12 @@ configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/CLandmarkConfig.h.in
     ${PROJECT_BINARY_DIR}/CLandmarkConfig.h
 )
+# Set double precision for header 
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/CLandmarkConfig.h.in
+    ${PROJECT_SOURCE_DIR}/libclandmark/CLandmarkConfig.h
+)
+
 set(clandmark_headers
     msvc-compat.h
     base64.h
@@ -156,19 +162,21 @@ install(FILES ${flandmark_headers} DESTINATION include COMPONENT Devel)
 install(FILES ${flandmark_models} DESTINATION share/clandmark/models)
 
 # deprecated:
-##setup Config.cmake
-#set(CLANDMARK_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/libclandmark" "${PROJECT_SOURCE_DIR}/3rd_party/rapidxml-1.13" "${PROJECT_SOURCE_DIR}/3rd_party/CImg-1.5.6")
+#setup Config.cmake
+set(CLANDMARK_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/libclandmark" "${PROJECT_SOURCE_DIR}/3rd_party/rapidxml-1.13" "${PROJECT_SOURCE_DIR}/3rd_party/CImg-1.5.6")
+set(CLANDMARK_BASE_DIR "${PROJECT_SOURCE_DIR}/libclandmark")
+set(CLANDMARK_BINARY_DIR "${PROJECT_BINARY_DIR}/libclandmark")
 #get_property(CLANDMARK_LIBRARIES TARGET clandmark PROPERTY LOCATION)
-#configure_file(clandmarkConfig.cmake.in
-#    "${PROJECT_BINARY_DIR}/libclandmark/clandmarkConfig.cmake" @ONLY
-#)
-#
-#export(PACKAGE clandmark)
-#
-#set(FLANDMARK_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/libclandmark" "${PROJECT_SOURCE_DIR}/3rd_party/rapidxml-1.13" "${PROJECT_SOURCE_DIR}/3rd_party/CImg-1.5.6")
+configure_file(clandmarkConfig.cmake.in
+    "${PROJECT_BINARY_DIR}/libclandmark/clandmarkConfig.cmake" @ONLY
+)
+
+export(PACKAGE clandmark)
+
+set(FLANDMARK_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}/libclandmark" "${PROJECT_SOURCE_DIR}/3rd_party/rapidxml-1.13" "${PROJECT_SOURCE_DIR}/3rd_party/CImg-1.5.6")
 #get_property(FLANDMARK_LIBRARIES TARGET flandmark PROPERTY LOCATION)
-#configure_file(flandmarkConfig.cmake.in
-#    "${PROJECT_BINARY_DIR}/libclandmark/flandmarkConfig.cmake" @ONLY
-#)
-#
-#export(PACKAGE flandmark)
+configure_file(flandmarkConfig.cmake.in
+    "${PROJECT_BINARY_DIR}/libclandmark/flandmarkConfig.cmake" @ONLY
+)
+
+export(PACKAGE flandmark)
