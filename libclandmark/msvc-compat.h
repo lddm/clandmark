@@ -86,4 +86,6 @@ template <class T>
 inline T square(const T &x) { return x*x; }
 }
 
+double log2(double n);
+
 #endif

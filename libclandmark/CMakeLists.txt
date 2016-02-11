@@ -76,6 +76,7 @@ set(clandmark_srcs
     CLoss.cpp
     CMaxSumSolver.cpp
     CXMLInOut.cpp
+    msvc-compat.cpp
 )
 
 set(flandmark_headers

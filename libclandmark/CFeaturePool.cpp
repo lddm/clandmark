@@ -1,5 +1,5 @@
 #include "CFeaturePool.h"
-
+#include "msvc-compat.h" 
 #include <cstring>
 
 using namespace clandmark;
